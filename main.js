@@ -39,7 +39,7 @@ sendButton.onclick = function() {
   } 
   // 都通过了
   else {
-    feedback.innerHTML = "Thank " + "you" + name + "!";
+    feedback.innerHTML = "Thank " + "you " + name + "!";
     feedback.style.color = "green";
 
     // 清空
