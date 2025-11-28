@@ -270,7 +270,22 @@
             justify-content: space-between;
             /* Set padding for the header area both vertically (18px) and horizontally (12px) to ensure the header content does not touch the edges
             给头部区域上下和左右设置内边距（18px 和 12px），确保头部内容不会贴边 */
-            padding: 18px 12px;
+            /* padding: 18px 12px;  This is old one */
+
+            /* new added */
+            position: fixed; 
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      background: rgba(251, 249, 247, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      z-index: 1000;
         }
 
         body.home nav.site-nav {
@@ -288,7 +303,7 @@
 
         /* Hero section */
         body.home .hero{
-            margin:18px 0;
+            margin:100px 0 0 0;
             border-radius:16px;
             overflow:hidden;
             position:relative;
@@ -463,13 +478,40 @@
         body.hrem .container {
           max-width: var(--max-width);
           margin: 0 auto;
-          padding: 1rem
+          padding: 12px;
         }
 
         /* Header. 使用 Flexbox 布局 */
         body.hrem header.site-header {
-          background: #fff;
-          border-bottom: 1px solid #e7e7e7;
+          /* background: #fff;
+          border-bottom: 1px solid #e7e7e7; */
+          /* Employ Flexbox to arrange header elements (such as brand logos, navigation bars, etc.)
+            使用弹性布局（Flexbox）来安排头部元素（例如品牌标志、导航栏等） */
+            display: flex;
+            /* Centre the child elements vertically
+            将子元素在垂直方向上居中对齐 */
+            align-items: center;
+            /* Child elements are aligned horizontally with maximum spacing between them (in this instance, the brand logo on the left and navigation items on the right)
+            子元素在水平方向上分散对齐，之间有最大空间（在此处，品牌标志在左边，导航项在右边） */
+            justify-content: space-between;
+            /* Set padding for the header area both vertically (18px) and horizontally (12px) to ensure the header content does not touch the edges
+            给头部区域上下和左右设置内边距（18px 和 12px），确保头部内容不会贴边 */
+            /* padding: 18px 12px;  This is old one */
+
+            /* new added */
+            position: fixed; 
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      background: rgba(251, 249, 247, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      z-index: 1000;
         }
         body.hrem .header-inner {
           display: flex; 
@@ -484,7 +526,7 @@
         }
         body.hrem .site-nav {
           display: flex; 
-          gap: 0.75rem; 
+          gap: 18px; 
           align-items: center
         }
         body.hrem .site-nav a {
@@ -902,11 +944,14 @@
         }
 
 /* Gallery 图像展示区 */
+/* Js & Json added, so I commented the code below, but then I withdrew doing so */
+
 body.dap .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--gap);
 }
+
 body.dap .box {
     position: relative;
     background: white;

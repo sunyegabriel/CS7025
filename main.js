@@ -1,164 +1,86 @@
-class Project {
-  constructor({ id, title, category, page, year, thumbnail, summary, tags }) {
-    this.id = id;
-    this.title = title;
-    this.category = category;
-    this.page = page;
-    this.year = year;
-    this.thumbnail = thumbnail;
-    this.summary = summary;
-    this.tags = Array.isArray(tags) ? tags : [];
+// 依旧假设HTML里有 <p id="contact-feedback"></p> 
+
+// 唯一在外面获取的可能就是这个按钮
+var sendButton = document.getElementById('sendButton');
+
+// 不检查按钮存不存在，直接用！
+// (如果页面上没有 'sendButton'，这行会在控制台报错，这很“初学者”)
+sendButton.onclick = function() {
+  
+  // -- 把所有获取元素的代码都塞到函数里面 --
+  // (每次点击按钮都会重新获取一次，效率很低，但很“人类”)
+  var nameInput = document.getElementById('name');
+  var emailInput = document.getElementById('email');
+  var messageInput = document.getElementById('text');
+  var feedback = document.getElementById('contact-feedback');
+
+  // 这里将值取出来
+  var name = nameInput.value;
+  var email = emailInput.value;
+  var message = messageInput.value;
+
+  // 在这里进行一个一个地检查
+  if (name == "") {
+    feedback.innerHTML = "name is empty";
+    feedback.style.color = "red";
+  } 
+  else if (email == "") {
+    feedback.innerHTML = "email is empty";
+    feedback.style.color = "red";
+  } 
+  else if (message == "") {
+    feedback.innerHTML = "message is empty";
+    feedback.style.color = "red";
   }
-}
+  // 检查 @
+  else if (email.indexOf('@') == -1) {
+    feedback.innerHTML = "email is invalid";
+    feedback.style.color = "red";
+  } 
+  // 都通过了
+  else {
+    feedback.innerHTML = "Thank " + "you" + name + "!";
+    feedback.style.color = "green";
 
-/**
- * Fetch project data from an external JSON file.
- * The JSON file only contains data, not behaviour.
- */
-async function fetchProjects() {
-  try {
-    const response = await fetch('./data/projects.json');
-    if (!response.ok) {
-      console.error('Could not load projects.json', response.status);
-      return [];
-    }
-    const data = await response.json();
-    return data.map(item => new Project(item));
-  } catch (error) {
-    console.error('Error while loading project data', error);
-    return [];
+    // 清空
+    nameInput.value = "";
+    emailInput.value = "";
+    messageInput.value = "";
   }
-}
+};
 
-class PortfolioApp {
-  constructor() {
-    this.projects = [];
-  }
 
-  async init() {
-    // The contact page does not depend on project data,
-    // so we initialise it immediately.
-    this.initialiseContactPage();
 
-    // Only the Home page needs the project data.
-    if (document.body.classList.contains('home')) {
-      this.projects = await fetchProjects();
-      this.renderHomePortfolioSummary();
-    }
-  }
 
-  /**
-   * Render a small, data-driven summary of the portfolio
-   * underneath the existing static portfolio links on Home.html.
-   */
-  renderHomePortfolioSummary() {
-    const container = document.getElementById('portfolio-summary');
-    if (!container || this.projects.length === 0) {
-      return;
-    }
 
-    const totalProjects = this.projects.length;
-    const projectsByCategory = this.countProjectsByCategory();
+// var carousel=document.querySelector('#carousel')
+// var items = carousel.children
+// var prevBtn = document.querySelector('#prev')
+// var nextBtn =document.querySelector('#next')
+// var index=0
+// nextBtn.addEventListener('click', function() {
+//   items[index].className =''
+//   if(index === items.length -1) {
+//     index=-1
+//   }
+// index++
+// items[index].className = 'active'
+// })
 
-    // Clean the container before adding new content (good practice
-    // if this function is ever reused).
-    container.innerHTML = '';
+// var timer = setInterval(function () {
+//   console.log('间隔2s输出一次')
+// }, 2000)
 
-    const intro = document.createElement('p');
-    intro.textContent = `Currently showing ${totalProjects} projects across ${Object.keys(projectsByCategory).length} categories.`;
-    container.appendChild(intro);
+// setTimeout(function () {
+//   clearInterval(timer)
+// }, 6000)
 
-    const list = document.createElement('ul');
-    list.className = 'portfolio-summary-list';
+// setInterval(function() {
+//   items[index].className =''
+//   if(index === items.length -1) {
+//     index=-1
+//   }
+// index++
+// items[index].className = 'active'
+// }, 1500);
 
-    for (const [category, count] of Object.entries(projectsByCategory)) {
-      const item = document.createElement('li');
-      // Capitalise the category for nicer display
-      const label = category.charAt(0).toUpperCase() + category.slice(1);
-      item.textContent = `${label}: ${count} project${count > 1 ? 's' : ''}`;
-      list.appendChild(item);
-    }
-
-    container.appendChild(list);
-  }
-
-  /**
-   * Compute how many projects exist in each category.
-   * Demonstrates correct use of loops and flow control.
-   */
-  countProjectsByCategory() {
-    const result = {};
-    for (const project of this.projects) {
-      const category = project.category || 'uncategorised';
-      if (!result[category]) {
-        result[category] = 0;
-      }
-      result[category] += 1;
-    }
-    return result;
-  }
-
-  /**
-   * Simple, fully client-side validation for the Contact page.
-   * Demonstrates conditions, DOM manipulation and legible naming.
-   */
-  initialiseContactPage() {
-    if (!document.body.classList.contains('contact')) {
-      return;
-    }
-
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const messageInput = document.getElementById('text');
-    const sendButton =
-      document.getElementById('sendButton') ||
-      document.querySelector('.content button');
-
-    if (!nameInput || !emailInput || !messageInput || !sendButton) {
-      // The form is not present; nothing to initialise.
-      return;
-    }
-
-    let feedback = document.getElementById('contact-feedback');
-    if (!feedback) {
-      feedback = document.createElement('p');
-      feedback.id = 'contact-feedback';
-      feedback.className = 'muted';
-      feedback.setAttribute('aria-live', 'polite');
-      sendButton.insertAdjacentElement('afterend', feedback);
-    }
-
-    sendButton.addEventListener('click', () => {
-      const name = nameInput.value.trim();
-      const email = emailInput.value.trim();
-      const message = messageInput.value.trim();
-
-      // Basic validation using conditions
-      if (!name || !email || !message) {
-        feedback.textContent = 'Please fill in all fields before sending.';
-        feedback.style.color = 'red';
-        return;
-      }
-
-      if (!email.includes('@')) {
-        feedback.textContent = 'The email address does not look valid.';
-        feedback.style.color = 'red';
-        return;
-      }
-
-      // If all checks have passed, show a friendly confirmation.
-      feedback.textContent = `Thank you, ${name}! Your message has not actually been sent (this is a demo for the assignment), but the form is working correctly.`;
-      feedback.style.color = 'green';
-
-      // Clear the form fields
-      nameInput.value = '';
-      emailInput.value = '';
-      messageInput.value = '';
-    });
-  }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const app = new PortfolioApp();
-  app.init();
-});

@@ -1,42 +1,42 @@
 [
   {
-    "id": "hrem",
-    "title": "Historical Reenactment & Early Music",
-    "category": "music",
-    "page": "HREM.html",
-    "year": 2024,
-    "thumbnail": "./Images/San_maurizio.jpg",
-    "summary": "Live historical reenactment performances and early music practice in the church of San Maurizio in Milan.",
-    "tags": ["reenactment", "early-music", "performance"]
+    "title": "Summer Vibes Festival",
+    "description": "A branding and campaign design concept.",
+    "img": "https://sunyegabriel.github.io/MyPic/img/Design_week_car.png"
   },
   {
-    "id": "dap-car-installation",
-    "title": "Design Week Car Installation",
-    "category": "design",
-    "page": "DAP.html",
-    "year": 2023,
-    "thumbnail": "./Images/Design_week_car.png",
-    "summary": "Immersive installation created for Milan Design Week, combining light, reflections and spatial design.",
-    "tags": ["installation", "design-week"]
+    "title": "Christmas Scene",
+    "description": "Christmas Scene",
+    "img": "https://sunyegabriel.github.io/MyPic/img/D1.png"
   },
   {
-    "id": "dap-photography-series",
-    "title": "Winter Street Photography",
-    "category": "photography",
-    "page": "DAP.html",
-    "year": 2022,
-    "thumbnail": "./Images/D1.png",
-    "summary": "A small series of urban photographs focused on light, shadow and the feeling of winter evenings.",
-    "tags": ["photography", "urban"]
+    "title": "Turin",
+    "description": "Turin cityscape illustration.",
+    "img": "https://sunyegabriel.github.io/MyPic/img/D2.png"
   },
   {
-    "id": "illuminated-manuscript",
-    "title": "Illuminated Manuscript — Cultural Map",
-    "category": "illustration",
-    "page": "Illuminated_Manuscript.html",
-    "year": 2024,
-    "thumbnail": "./Images/Roman_de_renaud_montauban.jpg",
-    "summary": "Vector-based illustration project inspired by medieval illuminated manuscripts and cross-cultural iconography.",
-    "tags": ["illustration", "manuscript", "medieval"]
+    "title": "San Fedele Basilica, Milan",
+    "description": "San Fedele Basilica, Milan.",
+    "img": "https://sunyegabriel.github.io/MyPic/img/D3.png"
+  },
+  {
+    "title": "Art Exhibition: Material Study",
+    "description": "Art Exhibition: Material Study.",
+    "img": "https://sunyegabriel.github.io/MyPic/img/D4.png"
+  },
+  {
+    "title": "Milan Design Week: Armani",
+    "description": "Milan Design Week: Armani installation.",
+    "img": "https://sunyegabriel.github.io/MyPic/img/D5.png"
+  },
+  {
+    "title": "Milan Design Week: Urban Context Rendering",
+    "description": "Milan Design Week: Urban context rendering.",
+    "img": "https://sunyegabriel.github.io/MyPic/img/D6.png"
+  },
+  {
+    "title": "Milan Design Week: Furniture",
+    "description": "Milan Design Week: Furniture design.",
+    "img": "https://sunyegabriel.github.io/MyPic/img/D7.png"
   }
 ]
